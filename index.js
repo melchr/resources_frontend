@@ -3,6 +3,10 @@ const endPoint = "http://localhost:3000/api/v1/materials"
 
 document.addEventListener('DOMContentLoaded', () => {
     getMaterials()
+
+    const createMaterialForm = document.querySelector("#create-material-form")
+
+    createMaterialForm.addEventListener("submit", (e) => createFormHandler(e))
 });
 
 function getMaterials() {
@@ -10,6 +14,7 @@ function getMaterials() {
     .then(response => response.json())
     .then(materials => {
         materials.data.forEach(material => {
+            // refactor below
             const materialMarkup = `
             <div data-id=${material.id}>
                 <h3>${material.attributes.title}</h3>
@@ -24,4 +29,8 @@ function getMaterials() {
         })
         
     })
+}
+
+function createFormHandler(e) {
+    e.preventDefault()
 }
