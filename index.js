@@ -49,8 +49,18 @@ function postFetch(title, description, url, category_id) {
     })
     .then(response => response.json())
     .then(material => {
-        console.log(material);
+        const materialData = material.data.attributes
+        
+        const materialMarkup = `
+        <div data-id=${material.id}>
+            <h3>${materialData.title}</h3>
+            <p>${materialData.description}</p>
+            <p>${materialData.url}</p>
+            <p>${materialData.category.name}</p>
+            <button data-id=${materialData.id}>edit</button>
+        </div>
+        <br><br>`
+
+
     })
-
-
 }
