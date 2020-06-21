@@ -61,6 +61,6 @@ function postFetch(title, description, url, category_id) {
         </div>
         <br><br>`
 
-
+        document.querySelector("#material-container").innerHTML += materialMarkup
     })
 }
