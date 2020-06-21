@@ -33,4 +33,8 @@ function getMaterials() {
 
 function createFormHandler(e) {
     e.preventDefault()
+    const titleInput = document.querySelector('#input-title').value
+    const descriptionInput = document.querySelector('#input-description').value
+    const urlInput = document.querySelector('#input-url').value
+    const categoryInput = document.querySelector('#categories').value
 }
