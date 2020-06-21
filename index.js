@@ -41,5 +41,18 @@ function createFormHandler(e) {
 }
 
 function postFetch(title, description, url, category_id) {
-    console.log(title, description, url, category_id)
+    fetch(endPoint, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            title: title,
+            description: description,
+            url: url,
+            category_id: category_id
+        })
+    })
+    .then(response => response.json())
+    .then(material => {
+        console.log(material);
+    })
 }
