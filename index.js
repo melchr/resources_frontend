@@ -49,14 +49,14 @@ function postFetch(title, description, url, category_id) {
     })
     .then(response => response.json())
     .then(material => {
-        const materialData = material.data.attributes
-        
+ //material object does not have category, data and category do not exist
+ //         <p>${materialData.category.name}</p>
+        const materialData = material
         const materialMarkup = `
         <div data-id=${material.id}>
             <h3>${materialData.title}</h3>
             <p>${materialData.description}</p>
             <p>${materialData.url}</p>
-            <p>${materialData.category.name}</p>
             <button data-id=${materialData.id}>edit</button>
         </div>
         <br><br>`
