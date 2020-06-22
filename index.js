@@ -14,21 +14,25 @@ function getMaterials() {
     .then(response => response.json())
     .then(materials => {
         materials.data.forEach(material => {
-            // refactor below
-            const materialMarkup = `
-            <div data-id=${material.id}>
-                <h3>${material.attributes.title}</h3>
-                <p>${material.attributes.description}</p>
-                <p>${material.attributes.url}</p>
-                <p>${material.attributes.category.name}</p>
-                <button data-id=${material.id}>edit</button>
-            </div>
-            <br><br>`;
-
-            document.querySelector('#material-container').innerHTML += materialMarkup
+            render(material)
         })
         
     })
+    .catch(err => console.log(err))
+}
+
+function render(material) {
+    const materialMarkup = `
+    <div data-id=${material.id}>
+        <h3>${material.attributes.title}</h3>
+        <p>${material.attributes.description}</p>
+        <a href="${material.attributes.url}">${material.attributes.url}</a>
+        <h6>Category: ${material.attributes.category.name}</h6>
+        <button data-id=${material.id}>edit</button>
+    </div>
+    <br><br>`;
+
+    document.querySelector('#material-container').innerHTML += materialMarkup
 }
 
 function createFormHandler(e) {
@@ -51,6 +55,7 @@ function postFetch(title, description, url, category_id) {
     .then(material => {
  //material object does not have category, data and category do not exist
  //         <p>${materialData.category.name}</p>
+ console.log(material)
         const materialData = material
         const materialMarkup = `
         <div data-id=${material.id}>
