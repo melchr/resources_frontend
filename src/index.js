@@ -13,31 +13,15 @@ function getMaterials() {
     fetch(endPoint)
     .then(response => response.json())
     .then(materials => {
-        //materials works, but material is undefined
         materials.data.forEach(material => {
             
             let newMaterial = new Material(material, material.attributes)
-            //debugger
-            //materials is not defined but material works
-            render(material)
+            
+            document.querySelector('#material-container').innerHTML += newMaterial.renderMaterialCard()
         })
         
     })
     //.catch(err => console.log(err))
-}
-
-function render(material) {
-    const materialMarkup = `
-    <div data-id=${material.id}>
-        <h3>${material.attributes.title}</h3>
-        <p>${material.attributes.description}</p>
-        <a href="${material.attributes.url}">${material.attributes.url}</a>
-        <h6>Category: ${material.attributes.category.name}</h6>
-        <button data-id=${material.id}>edit</button>
-    </div>
-    <br><br>`;
-
-    document.querySelector('#material-container').innerHTML += materialMarkup
 }
 
 function createFormHandler(e) {
