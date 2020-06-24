@@ -15,7 +15,8 @@ function getMaterials() {
     .then(materials => {
         //materials works, but material is undefined
         materials.data.forEach(material => {
-            let newMaterial = new Material(material)
+            
+            let newMaterial = new Material(material, material.attributes)
             //debugger
             //materials is not defined but material works
             render(material)
