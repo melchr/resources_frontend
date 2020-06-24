@@ -13,12 +13,16 @@ function getMaterials() {
     fetch(endPoint)
     .then(response => response.json())
     .then(materials => {
+        //materials works, but material is undefined
         materials.data.forEach(material => {
+            let newMaterial = new Material(material)
+            //debugger
+            //materials is not defined but material works
             render(material)
         })
         
     })
-    .catch(err => console.log(err))
+    //.catch(err => console.log(err))
 }
 
 function render(material) {
@@ -53,7 +57,9 @@ function postFetch(title, description, url, category_id) {
     })
     .then(response => response.json())
     .then(material => {
- //material object does not have category, data and category do not exist
+        ///debugger
+ //material object does not have category, data and category do not exist, but it does have a category_id. why does it lose access to those here?
+ //changed category.id to category_id
  //         <p>${materialData.category.name}</p>
  console.log(material)
         const materialData = material
@@ -62,6 +68,7 @@ function postFetch(title, description, url, category_id) {
             <h3>${materialData.title}</h3>
             <p>${materialData.description}</p>
             <p>${materialData.url}</p>
+            <p>${materialData.category_id}</p>
             <button data-id=${materialData.id}>edit</button>
         </div>
         <br><br>`
